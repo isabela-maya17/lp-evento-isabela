@@ -1,0 +1,12 @@
+{
+  "name": "Festival Sabores da Alta Paulista",
+  "short_name": "Sabores AP",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fefce8",
+  "theme_color": "#dc2626",
+  "icons": [
+    { "src": "/icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icone-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
