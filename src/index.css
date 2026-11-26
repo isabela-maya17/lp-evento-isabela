@@ -1,16 +1,27 @@
 @import "tailwindcss";
 
 @theme {
- 
-  --color-tomate: #b91c1c; 
+  --color-tomate: #dc2626;
+  --color-terracota: #b91c1c;
   --color-folha: #16a34a;
+  --color-folha-escura: #15803d;
   --color-creme: #fefce8;
+  --color-creme-escuro: #fef9c3;
+  --color-cafe: #1c1917;
+  --color-cacau: #57534e;
+
+  --font-display: "Fraunces", Georgia, Cambria, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-sans);
 }
 
+h1, h2, .font-display {
+  font-family: var(--font-display);
+}
 
 :focus-visible {
   outline: 3px solid var(--color-tomate);
@@ -24,7 +35,7 @@ html {
   background-color: var(--color-tomate);
   color: white;
   padding: 0.75rem 1.5rem;
-  font-weight: bold;
+  font-weight: 700;
   border-radius: 0.25rem;
   z-index: 100;
   transition: top 0.2s ease;

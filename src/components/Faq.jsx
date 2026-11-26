@@ -1,69 +1,61 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { faqs } from "../data/evento";
 
 export default function Faq() {
-    const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(0);
 
-    const toggleFAQ = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
-    };
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
-    const faqs = [
-        {
-            q: "Aceita cartão?",
-            a: "Sim, todas as barracas aceitam cartão e Pix."
-        },
-        {
-            q: "Tem opção vegetariana?",
-            a: "Sim, pelo menos cinco barracas têm pratos sem carne."
-        },
-        {
-            q: "Posso levar meu cachorro?",
-            a: "Pode, desde que na coleira."
-        }
-    ];
+  return (
+    <section
+      id="duvidas"
+      className="bg-creme py-16"
+      aria-labelledby="faq-heading"
+    >
+      <div className="max-w-3xl mx-auto px-5">
+        <h2 id="faq-heading" className="text-3xl font-bold text-cafe mb-8">
+          Perguntas Frequentes
+        </h2>
 
-    return (
-        <section id="duvidas" className="max-w-xl mx-auto px-6 py-12" aria-labelledby="faq-heading">
-            <h2 id="faq-heading" className="text-3xl font-bold text-center text-slate-800 mb-6">
-                Perguntas Frequentes
-            </h2>
+        <div className="bg-white border border-cafe/15 rounded-lg divide-y divide-cafe/10">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const buttonId = `faq-btn-${index}`;
+            const panelId = `faq-panel-${index}`;
 
-            <div className="flex flex-col gap-4">
-                {faqs.map((faq, index) => {
-                    const isOpen = openIndex === index;
-                    const buttonId = `faq-btn-${index}`;
-                    const panelId = `faq-panel-${index}`;
-
-                    return (
-                        <div key={index} className="border-b border-slate-200 pb-4">
-                            <h3>
-                                <button
-                                    id={buttonId}
-                                    type="button"
-                                    aria-expanded={isOpen}
-                                    aria-controls={panelId}
-                                    onClick={() => toggleFAQ(index)}
-                                    className="w-full flex justify-between items-center text-left font-semibold text-slate-700 hover:text-tomate py-2 text-lg cursor-pointer"
-                                >
-                                    <span>{faq.q}</span>
-                                    <span className="text-tomate font-bold text-sm" aria-hidden="true">
-                                        {isOpen ? '▲' : '▼'}
-                                    </span>
-                                </button>
-                            </h3>
-                            <div
-                                id={panelId}
-                                role="region"
-                                aria-labelledby={buttonId}
-                                hidden={!isOpen}
-                                className="mt-2 text-slate-600 text-base leading-relaxed"
-                            >
-                                <p>{faq.a}</p>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-        </section>
-    );
+            return (
+              <div key={faq.q} className="px-5 py-4">
+                <h3>
+                  <button
+                    id={buttonId}
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full flex justify-between items-center gap-4 text-left font-bold text-cafe hover:text-tomate py-1 text-base sm:text-lg cursor-pointer"
+                  >
+                    <span>{faq.q}</span>
+                    <span className="text-tomate font-bold text-xl leading-none" aria-hidden="true">
+                      {isOpen ? "−" : "+"}
+                    </span>
+                  </button>
+                </h3>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  hidden={!isOpen}
+                  className="mt-2 text-cacau text-sm sm:text-base leading-relaxed"
+                >
+                  <p>{faq.a}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -16,27 +16,33 @@ function BotaoLembrete() {
       return;
     }
 
-    const registro = await navigator.serviceWorker.ready;
-
-    await registro.showNotification("Festival Sabores da Alta Paulista", {
-      body: "O festival está chegando! Venha aproveitar os melhores pratos da região.",
-      icon: "/icone-192.png",
-    });
+    if ("serviceWorker" in navigator) {
+      const registro = await navigator.serviceWorker.ready;
+      await registro.showNotification("Festival Sabores da Alta Paulista", {
+        body: "O festival está chegando! Venha aproveitar os melhores pratos da região.",
+        icon: "/icone-192.png",
+      });
+    } else {
+      new Notification("Festival Sabores da Alta Paulista", {
+        body: "O festival está chegando! Venha aproveitar os melhores pratos da região.",
+        icon: "/icone-192.png",
+      });
+    }
 
     setMensagem("Lembrete ativado!");
   }
 
   return (
-    <div className="mt-4">
+    <div>
       <button
         type="button"
         onClick={ativarLembrete}
-        className="border border-[#16a34a] bg-[#16a34a]/15 hover:bg-[#16a34a] text-white font-semibold py-2.5 px-6 rounded-sm text-sm transition-colors"
+        className="border border-folha text-folha-escura hover:bg-folha hover:text-white font-semibold py-3 px-5 rounded text-sm transition-colors cursor-pointer"
       >
-        <span aria-hidden="true">🔔</span> Me lembre do evento
+        Me lembre do evento
       </button>
       {mensagem && (
-        <p role="status" className="mt-2 text-sm font-medium text-slate-200">
+        <p role="status" className="mt-2 text-sm font-medium text-folha-escura">
           {mensagem}
         </p>
       )}

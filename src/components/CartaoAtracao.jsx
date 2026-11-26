@@ -1,15 +1,34 @@
-export default function CartaoAtracao({ nome, especialidade, descricao }) {
+export default function CartaoAtracao({
+  nome,
+  especialidade,
+  descricao,
+  pratoAssinatura,
+  origem,
+  imagem,
+}) {
   return (
-    <article className="bg-white border border-slate-200 rounded-md p-6 shadow-sm flex flex-col items-center text-center">
-      <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-2xl mb-4" aria-hidden="true">
-        🧑‍🍳
+    <article className="bg-creme/50 border border-cafe/15 rounded-lg overflow-hidden flex flex-col h-full">
+      <img
+        src={imagem}
+        alt={`${pratoAssinatura}, especialidade de ${nome}`}
+        loading="lazy"
+        className="w-full aspect-square object-cover border-b border-cafe/10"
+      />
+
+      <div className="p-4 flex flex-col flex-1">
+        <p className="text-xs font-bold uppercase tracking-wider text-tomate">
+          {especialidade}
+        </p>
+        <h3 className="mt-1 font-display text-lg font-bold text-cafe">
+          {nome}
+        </h3>
+        <p className="mt-2 text-cacau text-sm leading-relaxed flex-1">
+          {descricao}
+        </p>
+        <p className="mt-3 pt-3 border-t border-cafe/10 text-xs text-cacau">
+          <strong className="text-cafe">{pratoAssinatura}</strong> · {origem}
+        </p>
       </div>
-      <h3 className="text-xl font-bold text-slate-800">{nome}</h3>
-      <span className="inline-block bg-red-50 text-tomate text-xs font-bold px-2.5 py-0.5 rounded-full mt-1 uppercase tracking-wider">
-        {especialidade}
-      </span>
-      <p className="text-slate-600 text-sm mt-3 leading-relaxed">{descricao}</p>
     </article>
   );
 }
-
